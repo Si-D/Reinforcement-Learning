@@ -57,6 +57,9 @@ for episode in range(EPISODES):
         elif new_state[0] >= env.goal_position:
             print(f"We made it on episode {episode}")
             q_table[disc_state + (action, )] = 0
-
-        disc_state = new_disc_state
+        disc_state = new_disc_state    
+    
+    if end_decay >= episode >= start_decay:
+        epsilon -= epsilon_decy_value
+        
 env.close()
