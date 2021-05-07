@@ -61,5 +61,14 @@ for episode in range(EPISODES):
     
     if end_decay >= episode >= start_decay:
         epsilon -= epsilon_decy_value
-        
+
+    ep_rewards.append(episode_reward)   
+
+    if not episode % SHOW:
+        average_reward = sum(ep_rewards[-SHOW:])/len(ep_rewards[-SHOW])    
+        aggr_ep_rewards['ep'].append(episode)
+        aggr_ep_rewards['avg'].append(average_reward)
+        aggr_ep_rewards['min'].append(min(ep_rewards[-SHOW:]))
+        aggr_ep_rewards['max'].append(max(ep_rewards[-SHOW:]))
+         
 env.close()
